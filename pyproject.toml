@@ -1,0 +1,19 @@
+[project]
+name = "giskard-phare"
+version = "0.1.0"
+description = "Reproduction of the Phare paper"
+authors = [
+    { name = "Pierre Le Jeune", email = "pierre@giskard.ai" },
+    { name = "Weixuan Xiao", email = "weixuan@giskard.ai" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "lmeval-framework",
+    "matplotlib>=3.10.1",
+    "pandas>=2.2.3",
+    "python-dotenv>=1.1.0",
+]
+
+[tool.uv.sources]
+lmeval-framework = { git = "https://github.com/google/lmeval.git", branch = "giskard-dev" }
