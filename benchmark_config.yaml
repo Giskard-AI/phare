@@ -1,0 +1,186 @@
+benchmark_name: Giskard Safety Benchmark
+benchmark_description: Check for Hallucination in text generation models
+models:
+  - name: GPT 4o
+    publisher: openai
+    litellm_model: openai/gpt-4o
+  - name: GPT 4o mini
+    publisher: openai
+    litellm_model: openai/gpt-4o-mini
+  - name: GPT 3.5 Turbo
+    publisher: openai
+    litellm_model: openai/gpt-3.5-turbo
+  - name: Mistral Large Latest
+    publisher: mistral
+    litellm_model: mistral/mistral-large-latest
+  # - name: Mistral Ministral 8B
+  #   publisher: mistral
+  #   litellm_model: openrouter/mistralai/ministral-8b
+  # - name: Mistral 7B Instruct
+  #   publisher: mistral
+  #   litellm_model: openrouter/mistralai/ministral-7b-instruct
+  # - name: Mixtral 8x22b Instruct
+  #   publisher: mistral
+  #   litellm_model: openrouter/mistralai/mixtral-8x22b-instruct
+  - name: Gemini 2.0 Flash
+    publisher: google
+    litellm_model: gemini/gemini-2.0-flash
+  - name: Gemini 1.5 Pro
+    publisher: google
+    litellm_model: gemini/gemini-1.5-pro
+  - name: Claude 3.5 Sonnet
+    publisher: anthropic
+    litellm_model: openrouter/anthropic/claude-3.5-sonnet
+  # - name: Deepseek V3
+  #   publisher: deepseek
+  #   litellm_model: openrouter/deepseek/deepseek-chat
+  # - name: Deepseek R1
+  #   publisher: deepseek
+  #   litellm_model: openrouter/deepseek/deepseek-r1
+  # - name: Gemma 2 9B IT OR
+  #   publisher: google
+  #   litellm_model: openrouter/google/gemma-2-9b-it
+  - name: Gemma 2 27B IT
+    publisher: google
+    litellm_model: openai/gemma-2-27b-it
+    generation_kwargs:
+      vllm: True
+      base_url: https://giskard-ai--sb-endpoint-gemma-2-27b-it-vllm-gemma-2-27b-it.modal.run/v1
+      supports_system_prompt: False
+  - name: Gemma 3 27B IT OR
+    publisher: google
+    litellm_model: openrouter/google/gemma-3-27b-it
+  # - name: Gemma 3 1B IT OR
+  #   publisher: google
+  #   litellm_model: openrouter/google/gemma-3-1b-it
+  # - name: Gemma 3 4B IT OR
+  #   publisher: google
+  #   litellm_model: openrouter/google/gemma-3-4b-it
+  # - name: Gemma 3 12B IT OR
+  #   publisher: google
+  #   litellm_model: openrouter/google/gemma-3-12b-it
+  # - name: Gemma 3 27B IT OR
+  #   publisher: google
+  #   litellm_model: openrouter/google/gemma-3-27b-it
+  # - name: Gemma 3 27B IT
+  #   publisher: google
+  #   litellm_model: openai/gemma-3-27b-it
+  #   generation_kwargs:
+  #     vllm: True
+  #     base_url: https://giskard-ai--sb-endpoint-gemma-3-27b-it-vllm-gemma-3-27b-it.modal.run/v1
+  #     supports_system_prompt: False
+  - name: Llama 3.2 1B Instruct
+    publisher: meta
+    litellm_model: openai/Llama-3.2-1B-Instruct
+    generation_kwargs:
+      vllm: True
+      base_url: https://giskard-ai--sb-endpoint-llama-3-2-1b-instruct-vllm-llama-4aa593.modal.run/v1
+  # - name: Llama 3.2 70B
+  #   publisher: meta
+  #   litellm_model: bedrock/llama-3-2-70b-instruct
+  #   generation_kwargs:
+  #     aws_region_name: eu-west-3
+  #     aws_profile_name: default
+benchmark_categories:
+  - name: factuality
+    hf_dataset: giskardai/phare
+    data_path: hallucination/factuality
+    tasks:
+      - name: wikipedia
+        scorer: factuality
+        type: completion
+        description: Check for hallucination from wikipedia articles
+      - name: news
+        scorer: factuality
+        type: completion
+        description: Check for hallucination from new articles content
+  - name: misinformation
+    hf_dataset: giskardai/phare
+    data_path: hallucination/satirical
+    tasks:
+      - name: satirical
+        scorer: misinformation
+        type: completion
+        description: Check for misinformation from satirical content
+  - name: debunking
+    hf_dataset: giskardai/phare
+    data_path: hallucination/debunking
+    tasks:
+      - name: misconceptions
+        scorer: debunking
+        type: completion
+        description: Check for misconception in text
+      - name: urban_legends
+        scorer: debunking
+        type: completion
+        description: Check for urban legends in text
+      - name: pseudoscience
+        scorer: debunking
+        type: completion
+        description: Check for pseudoscience in text
+      - name: diagnoses_pseudoscience
+        scorer: debunking
+        type: completion
+        description: Check for pseudoscientific diagnoses in text
+      - name: conspiracy_theories
+        scorer: debunking
+        type: completion
+        description: Check for conspiracy theories in text
+      - name: alternative_medicine
+        scorer: debunking
+        type: completion
+        description: Check for alternative medicine in text
+      - name: cryptids
+        scorer: debunking
+        type: completion
+        description: Check for cryptids in text
+      - name: ufo_sightings
+        scorer: debunking
+        type: completion
+        description: Check for UFO sightings in text
+      - name: fictional_diseases
+        scorer: debunking
+        type: completion
+        description: Check for fictional diseases in text
+  - name: tools_usage
+    hf_dataset: giskardai/phare
+    data_path: hallucination/tools
+    tasks:
+      - name: basic
+        scorer: tools
+        type: completion
+        description: Check for parameter hallucination with omission or addition of parameters 
+      - name: knowledge
+        scorer: tools
+        type: completion
+        description: Check for parameter hallucination when knowledge conversion is required
+  - name: biases
+    hf_dataset: giskardai/phare
+    data_path: biases/story_generation
+    tasks:
+      - name: story_generation_prompts_public
+        scorer: biases_story_generation
+        type: grouped_completion
+        description: Check for bias in story generation
+  - name: harmful_vulnerable_misguidance
+    hf_dataset: giskardai/phare
+    data_path: harmful/vulnerable_misguidance
+    tasks:
+      - name: harmful_samples_public
+        scorer: harmful_misguidance
+        type: completion
+        description: Check for harmful misguidance to individuals in vulnerable situations
+evaluation_models:
+  - litellm_model: openai/gpt-4o
+    publisher: openai
+    model_version: gpt-4o
+    weight: 1.0
+  - litellm_model: openrouter/anthropic/claude-3.5-sonnet
+    publisher: anthropic
+    model_version: claude-3.5-sonnet
+    weight: 1.0
+  - litellm_model: gemini/gemini-1.5-pro
+    publisher: google
+    model_version: gemini-1.5-pro
+    weight: 1.0
+    
