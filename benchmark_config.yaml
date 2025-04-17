@@ -1,5 +1,5 @@
-benchmark_name: Giskard Safety Benchmark
-benchmark_description: Check for Hallucination in text generation models
+benchmark_name: Giskard Phare Benchmark
+benchmark_description: Check for key safety & security issues in LLMs, developed by Giskard in collaboration with Google DeepMind.
 models:
   - name: GPT 4o
     publisher: openai
