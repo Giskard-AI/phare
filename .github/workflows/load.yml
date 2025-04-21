@@ -23,10 +23,8 @@ jobs:
       uses: astral-sh/setup-uv@v5
 
     - name: Install dependencies
-      working-directory: benchmark
       run: |
         uv sync
 
     - name: Setup benchmark
-      working-directory: benchmark
-      run: uv run 01_setup_benchmark.py --config_path benchmark_config.ci.yaml --save_path benchmark_data.db
+      run: uv run 01_setup_benchmark.py --config_path benchmark_config.yaml --save_path benchmark_data.db
