@@ -18,4 +18,4 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-lmeval-framework = { git = "https://github.com/google/lmeval.git", branch = "giskard-dev" }
+lmeval-framework = { git = "https://github.com/google/lmeval.git", rev = "896eb9405f41d0192f1272d30980a50f8e3d6120" }

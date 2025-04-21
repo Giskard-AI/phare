@@ -685,7 +685,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "huggingface-hub", specifier = ">=0.30.2" },
-    { name = "lmeval-framework", git = "https://github.com/google/lmeval.git?branch=giskard-dev" },
+    { name = "lmeval-framework", git = "https://github.com/google/lmeval.git?rev=896eb9405f41d0192f1272d30980a50f8e3d6120" },
     { name = "matplotlib", specifier = ">=3.10.1" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
@@ -1126,7 +1126,7 @@ wheels = [
 [[package]]
 name = "lmeval-framework"
 version = "0.11.4"
-source = { git = "https://github.com/google/lmeval.git?branch=giskard-dev#1ed81cde5f6e7431bd61d98e0b63eac794e81652" }
+source = { git = "https://github.com/google/lmeval.git?rev=896eb9405f41d0192f1272d30980a50f8e3d6120#896eb9405f41d0192f1272d30980a50f8e3d6120" }
 dependencies = [
     { name = "dash" },
     { name = "dash-bootstrap-components" },
