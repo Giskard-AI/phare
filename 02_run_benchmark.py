@@ -64,9 +64,6 @@ if len(MODELS_LIST) > 0:
 
         api_key = None
         base_url = None
-        if "vllm" in generation_kwargs and generation_kwargs.pop("vllm"):
-            api_key = os.getenv("VLLM_API_KEY")
-            base_url = generation_kwargs.pop("base_url")
 
         supports_tools = model.pop("supports_tools", True)
         model = LiteLLMModel(
