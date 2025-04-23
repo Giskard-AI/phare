@@ -1,86 +1,78 @@
-benchmark_name: Giskard Phare Benchmark
+benchmark_name: Giskard Phare Public Set
 benchmark_description: Check for key safety & security issues in LLMs, developed by Giskard in collaboration with Google DeepMind.
 models:
+  ## OpenAI
   - name: GPT 4o
     publisher: openai
     litellm_model: openai/gpt-4o
   - name: GPT 4o mini
     publisher: openai
     litellm_model: openai/gpt-4o-mini
-  - name: GPT 3.5 Turbo
-    publisher: openai
-    litellm_model: openai/gpt-3.5-turbo
+
+    ## Mistral
   - name: Mistral Large Latest
     publisher: mistral
     litellm_model: mistral/mistral-large-latest
-  # - name: Mistral Ministral 8B
-  #   publisher: mistral
-  #   litellm_model: openrouter/mistralai/ministral-8b
-  # - name: Mistral 7B Instruct
-  #   publisher: mistral
-  #   litellm_model: openrouter/mistralai/ministral-7b-instruct
-  # - name: Mixtral 8x22b Instruct
-  #   publisher: mistral
-  #   litellm_model: openrouter/mistralai/mixtral-8x22b-instruct
+  - name: Mistral Small 3.1 24B
+    publisher: mistral
+    litellm_model: mistral/mistral-small-latest
+
+  ## Gemini
   - name: Gemini 2.0 Flash
     publisher: google
     litellm_model: gemini/gemini-2.0-flash
   - name: Gemini 1.5 Pro
     publisher: google
     litellm_model: gemini/gemini-1.5-pro
+
+  ## Anthropic
   - name: Claude 3.5 Sonnet
     publisher: anthropic
     litellm_model: openrouter/anthropic/claude-3.5-sonnet
-  # - name: Deepseek V3
-  #   publisher: deepseek
-  #   litellm_model: openrouter/deepseek/deepseek-chat
-  # - name: Deepseek R1
-  #   publisher: deepseek
-  #   litellm_model: openrouter/deepseek/deepseek-r1
-  # - name: Gemma 2 9B IT OR
-  #   publisher: google
-  #   litellm_model: openrouter/google/gemma-2-9b-it
-  - name: Gemma 2 27B IT
-    publisher: google
-    litellm_model: openai/gemma-2-27b-it
-    generation_kwargs:
-      vllm: True
-      base_url: https://giskard-ai--sb-endpoint-gemma-2-27b-it-vllm-gemma-2-27b-it.modal.run/v1
-      supports_system_prompt: False
+  - name: Claude 3.7 Sonnet
+    publisher: anthropic
+    litellm_model: openrouter/anthropic/claude-3.7-sonnet
+  - name: Claude 3.5 Haiku 20241022
+    publisher: anthropic
+    litellm_model: openrouter/anthropic/claude-3.5-haiku-20241022
+
+  ## Gemma 3
   - name: Gemma 3 27B IT OR
     publisher: google
     litellm_model: openrouter/google/gemma-3-27b-it
-  # - name: Gemma 3 1B IT OR
-  #   publisher: google
-  #   litellm_model: openrouter/google/gemma-3-1b-it
-  # - name: Gemma 3 4B IT OR
-  #   publisher: google
-  #   litellm_model: openrouter/google/gemma-3-4b-it
-  # - name: Gemma 3 12B IT OR
-  #   publisher: google
-  #   litellm_model: openrouter/google/gemma-3-12b-it
-  # - name: Gemma 3 27B IT OR
-  #   publisher: google
-  #   litellm_model: openrouter/google/gemma-3-27b-it
-  # - name: Gemma 3 27B IT
-  #   publisher: google
-  #   litellm_model: openai/gemma-3-27b-it
-  #   generation_kwargs:
-  #     vllm: True
-  #     base_url: https://giskard-ai--sb-endpoint-gemma-3-27b-it-vllm-gemma-3-27b-it.modal.run/v1
-  #     supports_system_prompt: False
-  - name: Llama 3.2 1B Instruct
+    supports_tools: false
+
+   ## Deepseek
+  - name: Deepseek V3
+    publisher: deepseek
+    litellm_model: openrouter/deepseek/deepseek-chat
+    
+  - name: Deepseek V3 0324
+    publisher: deepseek
+    litellm_model: openrouter/deepseek/deepseek-chat-v3-0324
+
+  ## Llama 3
+  - name: Llama 3.3 70B Instruct OR
     publisher: meta
-    litellm_model: openai/Llama-3.2-1B-Instruct
-    generation_kwargs:
-      vllm: True
-      base_url: https://giskard-ai--sb-endpoint-llama-3-2-1b-instruct-vllm-llama-4aa593.modal.run/v1
-  # - name: Llama 3.2 70B
-  #   publisher: meta
-  #   litellm_model: bedrock/llama-3-2-70b-instruct
-  #   generation_kwargs:
-  #     aws_region_name: eu-west-3
-  #     aws_profile_name: default
+    litellm_model: openrouter/meta-llama/llama-3.3-70b-instruct
+  - name: Llama 3.1 405B Instruct OR
+    publisher: meta
+    litellm_model: openrouter/meta-llama/llama-3.1-405b-instruct
+  
+  ## Llama 4
+  - name: Llama 4 Maverick
+    publisher: meta
+    litellm_model: openrouter/meta-llama/llama-4-maverick
+
+  # Qwen
+  - name: Qwen 2.5 Max
+    publisher: Alibaba
+    litellm_model: openrouter/qwen/qwen-max
+
+  ## Grok
+  - name: Grok 2
+    publisher: x-ai
+    litellm_model: xai/grok-2-1212
 benchmark_categories:
   - name: factuality
     hf_dataset: giskardai/phare
