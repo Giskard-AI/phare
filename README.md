@@ -16,7 +16,6 @@ source .venv/bin/activate
 Running the benchmark will requires tokens for calling the different models. Here is a list of expected env variables: 
 - `OPENAI_API_KEY`
 - `GEMINI_API_KEY`
-- `VLLM_API_KEY` (to access VLLM models hosted on Modal)
 - `ANTHROPIC_API_KEY`
 - `OPENROUTER_API_KEY` 
 
@@ -26,13 +25,14 @@ Running the benchmark will requires tokens for calling the different models. Her
 To setup the benchmark, simply run:
 
 ```bash
-python 01_setup_benchmark.py --save_path <path_to_save_benchmark>.db
+python 01_setup_benchmark.py --config_path <path_to_config>.yaml --save_path <path_to_save_benchmark>.db
 ```
 
-The path to the files for each submodule should be set in `benchmark_config.yaml`, under the `benchmark_categories` key.
+The Hugging Face repository and the path to the files for each submodule should be set in `benchmark_config.yaml`, under the `hf_dataset` and the `data_path` keys.
 Each category should have the following structure:
 ```
 name: <category_name>
+hf_dataset: giskardai/phare
 data_path: <path_to_data>
 tasks:
     - name: <task_name>
@@ -41,7 +41,9 @@ tasks:
       description: <task_description>
 ```
 Each task should provide a name, type, description and its associated scorer.
-Path to data should point to the folder containing the jsonl files for each tasks, e.g. `../debunking/data/data_formatted_completion`, relative to the benchmark folder.
+Path to data should point to the folder under the Hugging Face repository, containing the jsonl files for each tasks.
+
+For example, in the `giskardai/phare` repository, the `hallucination/debunking` as the `<path_to_data>` with `misconceptions` as `<task_name>` indicates the `hallucination/debunking/misconceptions.jsonl` [file](https://huggingface.co/datasets/giskardai/phare/blob/main/hallucination/debunking/misconceptions.jsonl).
 
 Inside the jsonl files, each line should have the following format: 
 
