@@ -76,34 +76,3 @@ python 02_run_benchmark.py <path_to_benchmark.db> --max_evaluations_per_task <in
 ```
 
 The `max_evaluations_per_task` argument is optional, it sets the maximum number of evaluations per task. 
-
-
-## Utils scripts
-
-### Add language to question
-
-In case the language was not properly set in the question before initializing the benchmark, you can use the following script to add the language to the question afterwards.
-```bash
-python utils_scripts/add_language_to_question.py <input_benchmark_path> <path_to_save_benchmark>
-```
-
-### Convert benchmark to json
-
-```bash
-python utils_scripts/convert_benchmark_to_json.py <input_benchmark_path> <path_to_save_benchmark>
-```
-
-### Filter questions from benchmark file
-Given a file containing a list of question ids to filter, you can use the following script to filter the questions from the benchmark. It will remove the questions that which ids are in the file, across all tasks and categories.
-```bash
-python utils_scripts/filter_benchmark.py <input_benchmark_path> <path_to_save_benchmark> <path_to_ids_to_filter>
-```
-
-### Merge benchmarks
-**broken because of the refactoring**
-Concatenate two benchmarks together, if questions are present in both, add the answers missing from the second in the first one. 
-
-```bash
-python utils_scripts/merge_benchmarks.py <input_benchmark_path_1> <input_benchmark_path_2> <path_to_save_benchmark>
-```
-
