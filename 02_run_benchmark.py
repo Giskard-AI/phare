@@ -68,6 +68,7 @@ if len(MODELS_LIST) > 0:
             api_key = os.getenv("VLLM_API_KEY")
             base_url = generation_kwargs.pop("base_url")
 
+        supports_tools = model.pop("supports_tools", True)
         model = LiteLLMModel(
             litellm_model=model["litellm_model"],
             publisher=model["publisher"],
@@ -75,10 +76,12 @@ if len(MODELS_LIST) > 0:
             api_key=api_key,
             base_url=base_url,
         )
+
         model.runtime_vars["generation_kwargs"] = generation_kwargs
         model.runtime_vars["supports_system_prompt"] = generation_kwargs.pop(
             "supports_system_prompt", True
         )
+        model.runtime_vars["supports_tools"] = supports_tools
         models.append(model)
 
     timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
