@@ -1,0 +1,178 @@
+benchmark_name: Giskard Phare Public Set
+benchmark_description: Check for key safety & security issues in LLMs, developed by Giskard in collaboration with Google DeepMind.
+models:
+  ## OpenAI
+  - name: GPT 4o
+    publisher: openai
+    litellm_model: openai/gpt-4o
+  - name: GPT 4o mini
+    publisher: openai
+    litellm_model: openai/gpt-4o-mini
+
+    ## Mistral
+  - name: Mistral Large Latest
+    publisher: mistral
+    litellm_model: mistral/mistral-large-latest
+  - name: Mistral Small 3.1 24B
+    publisher: mistral
+    litellm_model: mistral/mistral-small-latest
+
+  ## Gemini
+  - name: Gemini 2.0 Flash
+    publisher: google
+    litellm_model: gemini/gemini-2.0-flash
+  - name: Gemini 1.5 Pro
+    publisher: google
+    litellm_model: gemini/gemini-1.5-pro
+
+  ## Anthropic
+  - name: Claude 3.5 Sonnet
+    publisher: anthropic
+    litellm_model: openrouter/anthropic/claude-3.5-sonnet
+  - name: Claude 3.7 Sonnet
+    publisher: anthropic
+    litellm_model: openrouter/anthropic/claude-3.7-sonnet
+  - name: Claude 3.5 Haiku 20241022
+    publisher: anthropic
+    litellm_model: openrouter/anthropic/claude-3.5-haiku-20241022
+
+  ## Gemma 3
+  - name: Gemma 3 27B IT OR
+    publisher: google
+    litellm_model: openrouter/google/gemma-3-27b-it
+    supports_tools: false
+
+   ## Deepseek
+  - name: Deepseek V3
+    publisher: deepseek
+    litellm_model: openrouter/deepseek/deepseek-chat
+    
+  - name: Deepseek V3 0324
+    publisher: deepseek
+    litellm_model: openrouter/deepseek/deepseek-chat-v3-0324
+
+  ## Llama 3
+  - name: Llama 3.3 70B Instruct OR
+    publisher: meta
+    litellm_model: openrouter/meta-llama/llama-3.3-70b-instruct
+  - name: Llama 3.1 405B Instruct OR
+    publisher: meta
+    litellm_model: openrouter/meta-llama/llama-3.1-405b-instruct
+  
+  ## Llama 4
+  - name: Llama 4 Maverick
+    publisher: meta
+    litellm_model: openrouter/meta-llama/llama-4-maverick
+
+  # Qwen
+  - name: Qwen 2.5 Max
+    publisher: Alibaba
+    litellm_model: openrouter/qwen/qwen-max
+
+  ## Grok
+  - name: Grok 2
+    publisher: x-ai
+    litellm_model: xai/grok-2-1212
+benchmark_categories:
+  - name: factuality
+    hf_dataset: giskardai/phare
+    data_path: hallucination/factuality
+    tasks:
+      - name: wikipedia
+        scorer: factuality
+        type: completion
+        description: Check for hallucination from wikipedia articles
+      - name: news
+        scorer: factuality
+        type: completion
+        description: Check for hallucination from new articles content
+  - name: misinformation
+    hf_dataset: giskardai/phare
+    data_path: hallucination/satirical
+    tasks:
+      - name: satirical
+        scorer: misinformation
+        type: completion
+        description: Check for misinformation from satirical content
+  - name: debunking
+    hf_dataset: giskardai/phare
+    data_path: hallucination/debunking
+    tasks:
+      - name: misconceptions
+        scorer: debunking
+        type: completion
+        description: Check for misconception in text
+      - name: urban_legends
+        scorer: debunking
+        type: completion
+        description: Check for urban legends in text
+      - name: pseudoscience
+        scorer: debunking
+        type: completion
+        description: Check for pseudoscience in text
+      - name: diagnoses_pseudoscience
+        scorer: debunking
+        type: completion
+        description: Check for pseudoscientific diagnoses in text
+      - name: conspiracy_theories
+        scorer: debunking
+        type: completion
+        description: Check for conspiracy theories in text
+      - name: alternative_medicine
+        scorer: debunking
+        type: completion
+        description: Check for alternative medicine in text
+      - name: cryptids
+        scorer: debunking
+        type: completion
+        description: Check for cryptids in text
+      - name: ufo_sightings
+        scorer: debunking
+        type: completion
+        description: Check for UFO sightings in text
+      - name: fictional_diseases
+        scorer: debunking
+        type: completion
+        description: Check for fictional diseases in text
+  - name: tools_usage
+    hf_dataset: giskardai/phare
+    data_path: hallucination/tools
+    tasks:
+      - name: basic
+        scorer: tools
+        type: completion
+        description: Check for parameter hallucination with omission or addition of parameters 
+      - name: knowledge
+        scorer: tools
+        type: completion
+        description: Check for parameter hallucination when knowledge conversion is required
+  - name: biases
+    hf_dataset: giskardai/phare
+    data_path: biases/story_generation
+    tasks:
+      - name: story_generation_prompts_public
+        scorer: biases_story_generation
+        type: grouped_completion
+        description: Check for bias in story generation
+  - name: harmful_vulnerable_misguidance
+    hf_dataset: giskardai/phare
+    data_path: harmful/vulnerable_misguidance
+    tasks:
+      - name: harmful_samples_public
+        scorer: harmful_misguidance
+        type: completion
+        description: Check for harmful misguidance to individuals in vulnerable situations
+evaluation_models:
+  - litellm_model: openai/gpt-4o
+    publisher: openai
+    model_version: gpt-4o
+    weight: 1.0
+  - litellm_model: openrouter/anthropic/claude-3.5-sonnet
+    publisher: anthropic
+    model_version: claude-3.5-sonnet
+    weight: 1.0
+  - litellm_model: gemini/gemini-1.5-pro
+    publisher: google
+    model_version: gemini-1.5-pro
+    weight: 1.0
+    
