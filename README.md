@@ -1,5 +1,21 @@
-## Install notes
-1. Install uv
+# Phare Benchmark
+
+Phare is a multilingual benchmark that measures LLM Safety across multiple categories of vulnerabilities, including **hallucination**, **biases & stereotypes** and **harmful content**.
+
+![Phare Benchmark](.github/phare.png)
+
+## Background and Motivation
+
+Large Language Models (LLMs) have rapidly advanced in capability and adoption, becoming essential tools across a wide spectrum of natural language processing applications. While existing benchmarks have focused primarily on general performance metrics, such as accuracy and task completion, there is a growing recognition of the need to evaluate these models through the lens of safety and robustness. Concerns over hallucination, harmful outputs, and social bias have escalated alongside model deployment in sensitive and high-impact settings.
+
+However, current safety evaluations tend to be fragmented or limited in scope, lacking unified diagnostic tools that deeply probe model behavior. In response to this gap, we introduce Phare, a multilingual and multi-faceted evaluation framework designed specifically to diagnose and analyze LLM failure modes across hallucination, bias, and harmful content. Phare aims at contributing a tool for the development of safer and more trustworthy AI systems.
+
+## Usage
+
+Phare is easy to use and reproducible. You can set up and run the benchmark with just a few commands using the `uv` package manager.
+
+### Install notes
+1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
 
 2. Clone this repo:
 ```bash
@@ -19,8 +35,7 @@ Running the benchmark will requires tokens for calling the different models. Her
 - `ANTHROPIC_API_KEY`
 - `OPENROUTER_API_KEY` 
 
-
-## Benchmark setup
+### Benchmark setup
 
 To setup the benchmark, simply run:
 
@@ -62,14 +77,6 @@ Inside the jsonl files, each line should have the following format:
 }
 ```
 
-## Add a new category
-To add a new task, follow these steps:
-1. Add it in the `benchmark_config.yaml` file, with the correct `data_path` and a list of tasks. 
-2. Implement the required scorers used in the tasks of the categories in the `scorers` folder and add it to the `SCORERS` inside `scorers/get_scorer.py`. 
-
-## Add a model
-To add a new model, simply add it in the `benchmark_config.yaml` file, under the `models` key. You can also change the evaluation models in the `evaluation_models` key.
-
 ## Run the benchmark
 To run the benchmark, simply run:
 
@@ -78,3 +85,15 @@ python 02_run_benchmark.py <path_to_benchmark.db> --max_evaluations_per_task <in
 ```
 
 The `max_evaluations_per_task` argument is optional, it sets the maximum number of evaluations per task. 
+
+## Extensibility
+
+This Phare benchmark is also designed to be easily extensible, thanks to [LM-eval](https://github.com/google/lmeval). You can add new categories, tasks, and models by following the instructions below.
+
+### Add a new category
+To add a new task, follow these steps:
+1. Add it in the `benchmark_config.yaml` file, with the correct `data_path` and a list of tasks. 
+2. Implement the required scorers used in the tasks of the categories in the `scorers` folder and add it to the `SCORERS` inside `scorers/get_scorer.py`. 
+
+### Add a model
+To add a new model, simply add it in the `benchmark_config.yaml` file, under the `models` key. You can also change the evaluation models in the `evaluation_models` key.
