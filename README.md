@@ -2,7 +2,7 @@
 
 Phare is a multilingual benchmark that measures LLM Safety across multiple categories of vulnerabilities, including **hallucination**, **biases & stereotypes**, **harmful content**, and **jailbreaks**.
 
-![Phare Benchmark](.github/phare.png)
+![Phare Benchmark](images/phare.png)
 
 ## Background and Motivation
 
