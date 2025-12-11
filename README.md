@@ -1,8 +1,17 @@
 # Phare Benchmark
-
 Phare is a multilingual benchmark that measures LLM Safety across multiple categories of vulnerabilities, including **hallucination**, **biases & stereotypes**, **harmful content**, and **jailbreaks**.
 
 ![Phare Benchmark](images/phare.png)
+
+<p align="center">
+  <a href="https://huggingface.co/datasets/giskardai/phare">
+    <img src="https://img.shields.io/badge/🤗%20Dataset-giskardai/phare-yellow" alt="Dataset"/>
+  </a>
+  <a href="https://arxiv.org/abs/2505.11365">
+    <img src="https://img.shields.io/badge/arXiv-2505.11365-b31b1b" alt="Paper"/>
+  </a>
+</p>
+
 
 ## Background and Motivation
 
@@ -10,12 +19,12 @@ Large Language Models (LLMs) have rapidly advanced in capability and adoption, b
 
 However, current safety evaluations tend to be fragmented or limited in scope, lacking unified diagnostic tools that deeply probe model behavior. In response to this gap, we introduce Phare, a multilingual and multi-faceted evaluation framework designed specifically to diagnose and analyze LLM failure modes across hallucination, bias, and harmful content. Phare aims at contributing a tool for the development of safer and more trustworthy AI systems.
 
-## Usage
+We keep a leaderboard up to date with the latest results on the [Phare Leaderboard](https://phare.giskard.ai). The scores in this leaderboard are computed on the private set of the dataset (only the public set is publicly available on Hugging Face).
 
+## Usage
 Phare is easy to use and reproducible. You can set up and run the benchmark with just a few commands using the `uv` package manager.
 
-## Setup
-### Clone this repository
+### Setup
 ```
 git clone https://github.com/Giskard-AI/phare.git
 cd phare
@@ -26,6 +35,8 @@ uv sync
 ```
 uv run python download_phare.py --path ./phare_data
 ```
+
+This will download the [Phare dataset](https://huggingface.co/datasets/giskardai/phare) to the `./phare_data` folder. 
 
 ### Set up API Keys
 Set up the API keys for the providers you want to use in the `.env` file.
@@ -41,10 +52,11 @@ To run the benchmark with this configuration, you need at least the following AP
 - ANTHROPIC_API_KEY
 
 ## Run the benchmark
+Simply execute the following command:
 ```
 uv run --env-file .env flare --config-path example_config.json --sample-path ./phare_data/public_set --name phare_public_set
 ```
-
+The benchmark will run for all the models and scorers defined in the configuration file.
 Optionnally, you can use the `--max-samples-per-task` argument to limit the number of samples to run for each task.
 
 ### Run output structure
@@ -103,7 +115,7 @@ Each scorer uses an ensemble of judge models:
 
 See `example_config.json` for a complete reference.
 
-## Data Structure
+## Phare Data Structure
 
 Each sample in the Phare dataset is stored as a JSON object in JSONL files:
 
@@ -135,4 +147,5 @@ Each sample in the Phare dataset is stored as a JSON object in JSONL files:
 ```
 
 > **Note:** In practice, only **biases** samples have multiple elements in the `generations` list, each representing a prompt variation to test for bias across demographic attributes.
+
 
