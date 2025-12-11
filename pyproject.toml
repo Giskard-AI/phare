@@ -1,21 +1,13 @@
 [project]
-name = "giskard-phare"
+name = "phare"
 version = "0.1.0"
-description = "Reproduction of the Phare paper"
-authors = [
-    { name = "Pierre Le Jeune", email = "pierre@giskard.ai" },
-    { name = "Weixuan Xiao", email = "weixuan@giskard.ai" }
-]
+description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13"
 dependencies = [
-    "huggingface-hub>=0.30.2",
-    "lmeval-framework",
-    "matplotlib>=3.10.1",
-    "pandas>=2.2.3",
-    "python-dotenv>=1.1.0",
-    "scipy>=1.15.2",
+    "flare",
+    "huggingface_hub>=0.20.0",
 ]
 
 [tool.uv.sources]
-lmeval-framework = { git = "https://github.com/google/lmeval.git", rev = "896eb9405f41d0192f1272d30980a50f8e3d6120" }
+flare = { git = "https://github.com/Giskard-AI/flare" }

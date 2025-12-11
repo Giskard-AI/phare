@@ -1,0 +1,291 @@
+{
+    "models": [
+        {
+            "name": "GPT 5 mini",
+            "litellm_model": "openai/gpt-5-mini",
+            "reasoning_effort": "low"
+        },
+        {
+            "name": "Gemini 2.5 Flash Lite",
+            "litellm_model": "gemini/gemini-2.0-flash-lite",
+            "thinking": {
+                "budget_tokens": 1024
+            }
+        },
+        {
+            "name": "Claude 4.5 Haiku",
+            "litellm_model": "anthropic/claude-haiku-4-5",
+            "thinking": {
+                "type": "enabled",
+                "budget_tokens": 1024
+            },
+            "allowed_openai_params": [
+                "thinking"
+            ],
+            "temperature": 1
+        }
+    ],
+    "scorers": {
+        "factuality": {
+            "parallelism": 15,
+            "models": [
+                {
+                    "litellm_model": "openai/gpt-5-mini",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "reasoning_effort": "minimal"
+                    }
+                },
+                {
+                    "litellm_model": "anthropic/claude-haiku-4-5",
+                    "extra_body": null,
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "type": "disabled"
+                        }
+                    }
+                },
+                {
+                    "litellm_model": "gemini/gemini-2.5-flash",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "budget_tokens": 0
+                        }
+                    }
+                }
+            ]
+        },
+        "misinformation": {
+            "parallelism": 15,
+            "models": [
+                {
+                    "litellm_model": "openai/gpt-5-mini",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "reasoning_effort": "minimal"
+                    }
+                },
+                {
+                    "litellm_model": "anthropic/claude-haiku-4-5",
+                    "extra_body": null,
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "type": "disabled"
+                        }
+                    }
+                },
+                {
+                    "litellm_model": "gemini/gemini-2.5-flash",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "budget_tokens": 0
+                        }
+                    }
+                }
+            ]
+        },
+        "debunking": {
+            "parallelism": 15,
+            "models": [
+                {
+                    "litellm_model": "openai/gpt-5-mini",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "reasoning_effort": "minimal"
+                    }
+                },
+                {
+                    "litellm_model": "anthropic/claude-haiku-4-5",
+                    "extra_body": null,
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "type": "disabled"
+                        }
+                    }
+                },
+                {
+                    "litellm_model": "gemini/gemini-2.5-flash",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "budget_tokens": 0
+                        }
+                    }
+                }
+            ]
+        },
+        "tools": {
+            "parallelism": 15,
+            "models": [
+                {
+                    "litellm_model": "openai/gpt-5-mini",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "reasoning_effort": "minimal"
+                    }
+                },
+                {
+                    "litellm_model": "anthropic/claude-haiku-4-5",
+                    "extra_body": null,
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "type": "disabled"
+                        }
+                    }
+                },
+                {
+                    "litellm_model": "gemini/gemini-2.5-flash",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "budget_tokens": 0
+                        }
+                    }
+                }
+            ]
+        },
+        "harmful_misguidance": {
+            "parallelism": 15,
+            "models": [
+                {
+                    "litellm_model": "openai/gpt-5-mini",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "reasoning_effort": "minimal"
+                    }
+                },
+                {
+                    "litellm_model": "anthropic/claude-haiku-4-5",
+                    "extra_body": null,
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "type": "disabled"
+                        }
+                    }
+                },
+                {
+                    "litellm_model": "gemini/gemini-2.5-flash",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "budget_tokens": 0
+                        }
+                    }
+                }
+            ]
+        },
+        "jailbreak/encoding": {
+            "parallelism": 15,
+            "models": [
+                {
+                    "litellm_model": "openai/gpt-5-mini",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "reasoning_effort": "minimal"
+                    }
+                },
+                {
+                    "litellm_model": "anthropic/claude-haiku-4-5",
+                    "extra_body": null,
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "type": "disabled"
+                        }
+                    }
+                },
+                {
+                    "litellm_model": "gemini/gemini-2.5-flash",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "budget_tokens": 0
+                        }
+                    }
+                }
+            ]
+        },
+        "jailbreak/framing": {
+            "parallelism": 15,
+            "models": [
+                {
+                    "litellm_model": "openai/gpt-5-mini",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "reasoning_effort": "minimal"
+                    }
+                },
+                {
+                    "litellm_model": "anthropic/claude-haiku-4-5",
+                    "extra_body": null,
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "type": "disabled"
+                        }
+                    }
+                },
+                {
+                    "litellm_model": "gemini/gemini-2.5-flash",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "budget_tokens": 0
+                        }
+                    }
+                }
+            ]
+        },
+        "jailbreak/injection": {
+            "parallelism": 15,
+            "models": [
+                {
+                    "litellm_model": "openai/gpt-5-mini",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "reasoning_effort": "minimal"
+                    }
+                },
+                {
+                    "litellm_model": "anthropic/claude-haiku-4-5",
+                    "extra_body": null,
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "type": "disabled"
+                        }
+                    }
+                },
+                {
+                    "litellm_model": "gemini/gemini-2.5-flash",
+                    "weight": 1.0,
+                    "generation_kwargs": {
+                        "thinking": {
+                            "budget_tokens": 0
+                        }
+                    }
+                }
+            ]
+        },
+        "biases/story_generation": {
+            "parallelism": 15,
+            "models": [
+                {
+                    "litellm_model": "openai/gpt-4o-mini",
+                    "weight": 1.0
+                },
+                {
+                    "litellm_model": "gemini/gemini-2.0-flash",
+                    "weight": 1.0
+                }
+            ]
+        }
+    }
+}
